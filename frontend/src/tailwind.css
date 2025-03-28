@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  @apply leading-[normal] m-0;
+  padding: 0 !important;
+}
+*,
+::before,
+::after {
+  border-width: 0;
+}
+@layer utilities{
+  .scroll-checkout::-webkit-scrollbar {
+    width: 7px;
+    z-index: 50;
+  }
+  .scroll-checkout::-webkit-scrollbar-track {
+    background-color: transparent;
+    z-index: 50;
+  }
+  .scroll-checkout::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    z-index: 50;
+  }
+  .scroll-checkBill::-webkit-scrollbar {
+    width: 7px;
+  }
+  .scroll-checkBill::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  .scroll-checkBill::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+  }
+  .scroll-description::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scroll-description::-webkit-scrollbar-track {
+    background-color: transparent;;
+  }
+  .scroll-description::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+  }
+  input::-ms-reveal {
+    display: none;
+  }
+}

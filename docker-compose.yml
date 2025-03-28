@@ -1,0 +1,55 @@
+version: '3.4'
+
+services:
+  db:
+    image: mariadb
+    container_name: db
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: shop_organic
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - product_network
+    volumes:
+      - ./shop_organic.sql:/docker-entrypoint-initdb.d/shop_organic.sql
+      - backup:/var/lib/mysql
+  backend:
+    depends_on:
+      db: 
+        condition: service_healthy
+        restart: true
+    restart: always
+    container_name: backend
+    image: backend
+    build:
+      context: backend
+      dockerfile: ./Dockerfile
+    networks:
+      - product_network
+  frontend:
+    depends_on:
+      backend:
+        condition: service_started
+      db:
+        condition: service_started
+    restart: always
+    container_name: frontend
+    image: frontend
+    build:
+      context: frontend
+      dockerfile: ./Dockerfile
+    networks:
+      - product_network
+    ports:
+      - 80:80
+volumes:
+  backup:
+
+networks:
+  product_network:
