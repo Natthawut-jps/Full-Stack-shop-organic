@@ -260,9 +260,9 @@ const Checkout_Bill: FunctionComponent = () => {
                       ) : null}
                     </strong>
                     <a
-                      href="/img/promptpay-QR.jpg"
+                      href="/img/promptpay-QR.png"
                       className="no-underline px-4 py-1 bg-green-700 rounded-md text-white flex flex-row justify-self-center w-fit"
-                      download="promptpay-QR.png" type="image/png"
+                      download={"promptpay-QR.png" }
                     >
                       บันทึก
                     </a>
