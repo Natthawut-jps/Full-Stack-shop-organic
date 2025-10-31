@@ -2,7 +2,7 @@ import axios from "axios";
 import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 const instance_auth = axios.create({
-  baseURL: "http://api.nps.shoporganic.com/auth",
+  baseURL: "http://api.52.65.68.216.com/auth",
   timeout: 1000,
 });
 
