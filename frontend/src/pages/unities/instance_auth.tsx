@@ -2,7 +2,7 @@ import axios from "axios";
 import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 const instance_auth = axios.create({
-  baseURL: "http://api.52.65.68.216.com/auth",
+  baseURL: "http://api.146.190.106.138.com/auth",
   timeout: 1000,
 });
 
@@ -36,7 +36,7 @@ try {
         if (_ur) {
           try {
             // const url_deploy = "https://api-shoporganic-ecommerce.onrender.com/refresh/r_auth";
-            const url_dev = "http://api.nps.shoporganic.com/refresh/r_auth";
+            const url_dev = "http://api.146.190.106.138.com/refresh/r_auth";
             await axios({
               method: "post",
               url: url_dev,
@@ -50,12 +50,12 @@ try {
                 cookies.set("_ut", res.data._ut, {
                   expires: new Date(date.setMinutes(date.getMinutes() + 6)),
                   sameSite: "strict",
-                  domain: "nps.shoporganic.com",
+                  domain: "146.190.106.138.com",
                 });
                 cookies.set("_ur", res.data._ur, {
                   expires: new Date(date.setDate(date.getDate() + 15)),
                   sameSite: "strict",
-                  domain: "nps.shoporganic.com",
+                  domain: "146.190.106.138.com",
                 });
               }
             });
