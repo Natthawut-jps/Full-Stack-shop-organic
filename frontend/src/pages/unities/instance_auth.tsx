@@ -2,7 +2,7 @@ import axios from "axios";
 import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 const instance_auth = axios.create({
-  baseURL: "http://146.190.106.138/api/auth",
+  baseURL: "http://api.nps.rest/auth",
   timeout: 1000,
 });
 
@@ -36,7 +36,7 @@ try {
         if (_ur) {
           try {
             // const url_deploy = "https://api-shoporganic-ecommerce.onrender.com/refresh/r_auth";
-            const url_dev = "http://146.190.106.138/api/refresh/r_auth";
+            const url_dev = "http://api.nps.rest/refresh/r_auth";
             await axios({
               method: "post",
               url: url_dev,
@@ -50,12 +50,12 @@ try {
                 cookies.set("_ut", res.data._ut, {
                   expires: new Date(date.setMinutes(date.getMinutes() + 6)),
                   sameSite: "strict",
-                  domain: "146.190.106.138",
+                  domain: "nps.rest",
                 });
                 cookies.set("_ur", res.data._ur, {
                   expires: new Date(date.setDate(date.getDate() + 15)),
                   sameSite: "strict",
-                  domain: "146.190.106.138",
+                  domain: "nps.rest",
                 });
               }
             });
