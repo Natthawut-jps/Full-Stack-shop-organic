@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGoogleLogin } from "@react-oauth/google";
-import axios, { AxiosResponse } from "axios";
-import GoogleButton from "react-google-button";
+// import { useGoogleLogin } from "@react-oauth/google";
+import { AxiosResponse } from "axios";
+// import GoogleButton from "react-google-button";
 import { Dialog, DialogContent, useMediaQuery, useTheme } from "@mui/material";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,54 +30,54 @@ export const SignIn: FunctionComponent<openSignIn> = (props) => {
   const [err, setErr] = useState<data>({} as data);
   const [incorrect, setIncorrect] = useState<boolean>(false);
   const [passEye, setPassEye] = useState<boolean>(false);
-  const LoginGoogle = useGoogleLogin({
-    onSuccess: async (tokenResponse) => {
-      await axios({
-        method: "get",
-        url: "https://www.googleapis.com/oauth2/v3/userinfo",
-        headers: {
-          Authorization: `${
-            tokenResponse.token_type + tokenResponse.access_token
-          }`,
-        },
-      }).then(async (res) => {
-        if (res.status === 200) {
-          await instance({
-            method: "post",
-            url: "/public/register/google",
-            data: {
-              email: res.data.email,
-              password: res.data.sub,
-              first_name: res.data.given_name,
-              last_name: res.data.family_name,
-              imgURL: res.data.picture,
-              accept: 1,
-            },
-            headers: {
-              "Content-Type": "application/json",
-            },
-            responseType: "json",
-          }).then((res) => {
-            if (res.status === 200) {
-              const date = new Date();
-              cookies.set("_ut", res.data._ut, {
-                expires: new Date(date.setMinutes(date.getMinutes() + 5)),
-                sameSite: "strict",
-                domain: "nps.shoporganic.com"
-              });
-              cookies.set("_ur", res.data._ur, {
-                expires: new Date(date.setDate(date.getDate() + 15)),
-                sameSite: "strict",
-                domain: "nps.shoporganic.com"
-              });
-              return (location.href = "/");
-            }
-          });
-        }
-      });
-    },
-    onError: (err) => console.log(err),
-  });
+  // const LoginGoogle = useGoogleLogin({
+  //   onSuccess: async (tokenResponse) => {
+  //     await axios({
+  //       method: "get",
+  //       url: "https://www.googleapis.com/oauth2/v3/userinfo",
+  //       headers: {
+  //         Authorization: `${
+  //           tokenResponse.token_type + tokenResponse.access_token
+  //         }`,
+  //       },
+  //     }).then(async (res) => {
+  //       if (res.status === 200) {
+  //         await instance({
+  //           method: "post",
+  //           url: "/public/register/google",
+  //           data: {
+  //             email: res.data.email,
+  //             password: res.data.sub,
+  //             first_name: res.data.given_name,
+  //             last_name: res.data.family_name,
+  //             imgURL: res.data.picture,
+  //             accept: 1,
+  //           },
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           responseType: "json",
+  //         }).then((res) => {
+  //           if (res.status === 200) {
+  //             const date = new Date();
+  //             cookies.set("_ut", res.data._ut, {
+  //               expires: new Date(date.setMinutes(date.getMinutes() + 5)),
+  //               sameSite: "strict",
+  //               domain: "nps.shoporganic.com"
+  //             });
+  //             cookies.set("_ur", res.data._ur, {
+  //               expires: new Date(date.setDate(date.getDate() + 15)),
+  //               sameSite: "strict",
+  //               domain: "nps.shoporganic.com"
+  //             });
+  //             return (location.href = "/");
+  //           }
+  //         });
+  //       }
+  //     });
+  //   },
+  //   onError: (err) => console.log(err),
+  // });
 
   const passwordEye = () => {
     const el = document.querySelector("#passwordSignIn");
