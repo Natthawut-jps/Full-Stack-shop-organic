@@ -242,7 +242,7 @@ export const SignIn: FunctionComponent<openSignIn> = (props) => {
                 </button>
               </form>
             </div>
-            <div className="flex flex-col justify-center items-center gap-5">
+            {/* <div className="flex flex-col justify-center items-center gap-5">
               <div className="flex flex-row items-start justify-start pt-1 px-0 pb-0 text-gray-scale-gray-600">
                 <div className="relative leading-[150%]">
                   ลงชื่อด้วยวิธีอื่น
@@ -255,7 +255,7 @@ export const SignIn: FunctionComponent<openSignIn> = (props) => {
                   onClick={() => LoginGoogle()}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </DialogContent>
       </Dialog>
