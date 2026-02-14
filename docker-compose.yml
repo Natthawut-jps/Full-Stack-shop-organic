@@ -16,9 +16,9 @@ services:
       retries: 3
     networks:
       - product_network
+    working_dir: /app
     volumes:
       - ./shop_organic.sql:/docker-entrypoint-initdb.d/shop_organic.sql
-      - working_dir: /app
       - .:/app
       - backup:/var/lib/mysql
   backend:
