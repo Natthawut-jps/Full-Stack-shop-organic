@@ -18,6 +18,8 @@ services:
       - product_network
     volumes:
       - ./shop_organic.sql:/docker-entrypoint-initdb.d/shop_organic.sql
+      - working_dir: /app
+      - .:/app
       - backup:/var/lib/mysql
   backend:
     depends_on:
