@@ -194,7 +194,7 @@ export const Header: FunctionComponent = () => {
                 <MenuItem onClick={handleClose}>
                   {" "}
                   <img
-                    src={`${import.meta.env.VITE_BASE_API}/img/${item.imgURL}`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${item.imgURL}`}
                     width={25}
                     height={25}
                     alt=""
@@ -266,7 +266,7 @@ export const Header: FunctionComponent = () => {
                   }}
                 >
                   <img
-                    src={`${import.meta.env.VITE_BASE_API}/img/profile.jpg`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_API}/img/profile.jpg`}
                     className="max-w-full w-full object-cover"
                   />
                 </Avatar>

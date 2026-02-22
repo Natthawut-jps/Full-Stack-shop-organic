@@ -237,7 +237,7 @@ export const Homepage: FunctionComponent = () => {
                   <img
                     className="sm:max-w-[180px] w-full object-cover"
                     alt=""
-                    src={`${import.meta.env.VITE_BASE_API}/img/${item.imgURL}`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${item.imgURL}`}
                   />
                   <div className="font-medium inline-block pb-1 box-border text-base">
                     {item.category_name}
@@ -277,7 +277,7 @@ export const Homepage: FunctionComponent = () => {
                         <img
                           className="sm:max-h-[150px] max-h-[100px] w-full object-cover"
                           alt=""
-                          src={`${import.meta.env.VITE_BASE_API}/img/${
+                          src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${
                             item.imgURL
                           }`}
                         />
@@ -373,7 +373,7 @@ export const Homepage: FunctionComponent = () => {
                       <img
                         className="rounded-t-lg rounded-b-none sm:max-h-[200px] max-h-[100px] max-w-full w-full object-cover"
                         alt=""
-                        src={`${import.meta.env.VITE_BASE_API}/img/${
+                        src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${
                           item.imgURL
                         }`}
                       />

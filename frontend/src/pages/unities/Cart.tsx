@@ -266,7 +266,7 @@ export const Cart: FunctionComponent<open> = (props) => {
                         <img
                           className="max-w-[100px] w-[100px] object-cover"
                           alt="Image"
-                          src={`${import.meta.env.VITE_BASE_API}/img/${
+                          src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${
                             item.imgURL
                           }`}
                         />
