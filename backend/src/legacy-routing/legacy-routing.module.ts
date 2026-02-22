@@ -13,7 +13,13 @@ export class LegacyRoutingModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(PublicRouterMiddleware)
-      .forRoutes({ path: 'public/(.*)', method: RequestMethod.ALL });
+      .forRoutes(
+        { path: 'public/register/(.*)', method: RequestMethod.ALL },
+        { path: 'public/login/(.*)', method: RequestMethod.ALL },
+        { path: 'public/admin_login/(.*)', method: RequestMethod.ALL },
+        { path: 'public/reset_password/(.*)', method: RequestMethod.ALL },
+        { path: 'public/contact/(.*)', method: RequestMethod.ALL },
+      );
 
     consumer
       .apply(AuthRouterMiddleware)
