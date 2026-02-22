@@ -5,8 +5,9 @@
 - `src/main.ts` boots the Nest application
 - `src/app.module.ts` composes core modules
 - `src/database/*` configures TypeORM connection via Nest DI
-- `src/public-catalog/*` shows Nest `Controller + Service + Module` with TypeORM repositories
-- `src/legacy-routing/*` mounts remaining legacy Express routers via Nest middleware for incremental migration
+- `src/public-catalog/*` uses Nest `Controller + Service + Module` with TypeORM repositories
+- `src/public-access/*` migrates public auth/contact/reset routes to Nest `Controller + Service + Module`
+- `src/legacy-routing/*` mounts only remaining legacy Express routers via Nest middleware
 
 ## Setup
 
@@ -20,4 +21,9 @@
 
 - `GET /public/products/get_product`
 - `GET /public/categories/get_category`
+- `POST /public/register/username`
+- `POST /public/register/google`
+- `POST /public/reset_password/find_user`
+- `POST /public/reset_password/send_email`
+- `POST /public/contact/add`
 - `GET /health`

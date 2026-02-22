@@ -14,11 +14,8 @@ export class LegacyRoutingModule implements NestModule {
     consumer
       .apply(PublicRouterMiddleware)
       .forRoutes(
-        { path: 'public/register/(.*)', method: RequestMethod.ALL },
         { path: 'public/login/(.*)', method: RequestMethod.ALL },
         { path: 'public/admin_login/(.*)', method: RequestMethod.ALL },
-        { path: 'public/reset_password/(.*)', method: RequestMethod.ALL },
-        { path: 'public/contact/(.*)', method: RequestMethod.ALL },
       );
 
     consumer
