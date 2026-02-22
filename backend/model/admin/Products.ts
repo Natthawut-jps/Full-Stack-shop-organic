@@ -1,61 +1,17 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("../_Database_Connected");
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-const Product = sequelize.define("produst", {
-  name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  price: {
-    type: DataTypes.DECIMAL(32, 2),
-    allowNull: true,
-  },
-  categories: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  imgURL: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  description: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  quantity: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  rating: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
-  },
-  sold: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0
-  },
-  status: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 1,
-  },
-  createdAt: {
-    field: "createdAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-  updatedAt: {
-    field: "updatedAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-});
-(async () => {
-  await sequelize.sync({ force: false });
-})();
+@Entity({ name: 'produst' })
+export class Product {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-module.exports = { Product };
-
-export {};
+  @Column({ nullable: true }) name: string;
+  @Column('decimal', { precision: 32, scale: 2, nullable: true }) price: string;
+  @Column({ nullable: true }) categories: string;
+  @Column({ nullable: true }) imgURL: string;
+  @Column({ nullable: true }) description: string;
+  @Column({ nullable: true }) quantity: number;
+  @Column({ default: 0 }) rating: number;
+  @Column({ default: 0 }) sold: number;
+  @Column({ default: 1 }) status: number;
+}

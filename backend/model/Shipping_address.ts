@@ -1,63 +1,18 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("./_Database_Connected");
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-const Shipping_address = sequelize.define("shipping_address", {
-  first_name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  last_name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  street: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  county: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  states: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  tambon: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  zipCode: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  phone: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  status: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  createdAt: {
-    field: "createdAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-  updatedAt: {
-    field: "updatedAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-});
+@Entity({ name: 'shipping_address' })
+export class Shipping_address {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-(async () => {
-  await sequelize.sync({ force: false });
-})();
-
-module.exports = { Shipping_address };
-
-export {};
+  @Column({ nullable: true }) first_name: string;
+  @Column({ nullable: true }) last_name: string;
+  @Column({ nullable: true }) street: string;
+  @Column({ nullable: true }) county: string;
+  @Column({ nullable: true }) states: string;
+  @Column({ nullable: true }) tambon: string;
+  @Column({ nullable: true }) zipCode: number;
+  @Column({ nullable: true }) email: string;
+  @Column({ nullable: true }) phone: string;
+  @Column() status: number;
+}

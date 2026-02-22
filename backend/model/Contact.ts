@@ -1,39 +1,16 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("./_Database_Connected");
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-const Contact = sequelize.define("contact", {
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  subject: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  createdAt: {
-    field: "createdAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-  updatedAt: {
-    field: "updatedAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-});
+@Entity({ name: 'contact' })
+export class Contact {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-(async () => {
-  await sequelize.sync({ force: false });
-})();
-
-module.exports = { Contact };
-
-export {};
+  @Column()
+  name: string;
+  @Column()
+  email: string;
+  @Column()
+  subject: string;
+  @Column()
+  description: string;
+}

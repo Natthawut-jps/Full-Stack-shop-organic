@@ -1,55 +1,24 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("./_Database_Connected");
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-const Favorite = sequelize.define("favorite", {
-  name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  price: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  categories: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  rating: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  quantity: {
-    type: DataTypes.INTEGER,
-    defaultValue: 1,
-    allowNull: true,
-  },
-  imgURL: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  pid: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  uid: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  createdAt: {
-    field: "createdAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-  updatedAt: {
-    field: "updatedAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-});
+@Entity({ name: 'favorite' })
+export class Favorite {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-(async () => {
-  await sequelize.sync({ force: false });
-})();
-module.exports = { Favorite };
-
-export {};
+  @Column({ nullable: true })
+  name: string;
+  @Column({ nullable: true })
+  price: number;
+  @Column({ nullable: true })
+  categories: string;
+  @Column({ nullable: true })
+  rating: number;
+  @Column({ default: 1, nullable: true })
+  quantity: number;
+  @Column({ nullable: true })
+  imgURL: string;
+  @Column({ nullable: true })
+  pid: number;
+  @Column({ nullable: true })
+  uid: number;
+}

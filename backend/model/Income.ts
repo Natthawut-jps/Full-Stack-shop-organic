@@ -1,35 +1,14 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("./_Database_Connected");
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-const Income = sequelize.define("income", {
-  emp_name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  emp_salary: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  order_name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  createdAt: {
-    field: "createdAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-  updatedAt: {
-    field: "updatedAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-});
+@Entity({ name: 'income' })
+export class Income {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-(async () => {
-  await sequelize.sync({ force: false });
-})();
-
-module.exports = { Income };
-
-export {};
+  @Column({ nullable: true })
+  emp_name: string;
+  @Column({ nullable: true })
+  emp_salary: string;
+  @Column({ nullable: true })
+  order_name: string;
+}

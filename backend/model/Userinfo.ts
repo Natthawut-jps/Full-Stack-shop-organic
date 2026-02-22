@@ -1,53 +1,15 @@
-const { DataTypes } = require('sequelize');
-const { sequelize } = require("./_Database_Connected");
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-const Userinfo = sequelize.define("userinfo", {
-  first_name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  last_name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  email: {
-    type: DataTypes.STRING,
-    unique: true,
-    allowNull: true,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  accept: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  imgURL: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  gmail: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
-  },
-  createdAt: {
-    field: "createdAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-  updatedAt: {
-    field: "updatedAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-});
+@Entity({ name: 'userinfo' })
+export class Userinfo {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-(async () => {
-  await sequelize.sync({ force: false });
-})();
-
-module.exports = { Userinfo };
-
-export {};
+  @Column({ nullable: true }) first_name: string;
+  @Column({ nullable: true }) last_name: string;
+  @Column({ unique: true, nullable: true }) email: string;
+  @Column({ nullable: true }) password: string;
+  @Column({ nullable: true }) accept: number;
+  @Column({ nullable: true }) imgURL: string;
+  @Column({ default: 0 }) gmail: number;
+}

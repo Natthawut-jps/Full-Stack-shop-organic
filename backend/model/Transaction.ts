@@ -1,31 +1,10 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("./_Database_Connected");
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-const Transaction = sequelize.define("trnsaction", {
-  username: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  createdAt: {
-    field: "createdAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-  updatedAt: {
-    field: "updatedAt",
-    allowNull: false,
-    type: DataTypes.DATEONLY,
-  },
-});
+@Entity({ name: 'trnsaction' })
+export class Transaction {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-(async () => {
-  await sequelize.sync({ force: false });
-})();
-
-module.exports = { Transaction };
-
-export {};
+  @Column({ nullable: true }) username: string;
+  @Column({ nullable: true }) password: string;
+}
