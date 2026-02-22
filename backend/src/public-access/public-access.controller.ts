@@ -11,6 +11,19 @@ export class PublicAccessController {
     return this.publicAccessService.registerWithUsername(body);
   }
 
+
+  @Post('login/auth/username')
+  @HttpCode(200)
+  loginWithUsername(@Body() body: any) {
+    return this.publicAccessService.loginWithUsername(body);
+  }
+
+  @Post('admin_login/admin')
+  @HttpCode(200)
+  loginAdmin(@Body() body: any) {
+    return this.publicAccessService.loginAdmin(body);
+  }
+
   @Post('register/google')
   @HttpCode(200)
   registerWithGoogle(@Body() body: any) {

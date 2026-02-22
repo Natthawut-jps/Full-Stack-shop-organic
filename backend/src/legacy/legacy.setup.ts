@@ -6,7 +6,6 @@ export function initializeLegacyStack() {
   if (initialized) return;
 
   require('dotenv').config({ path: './.env.local' });
-  require('../../router/passport');
 
   require('../../model/Cart');
   require('../../model/Favorite');
@@ -25,16 +24,4 @@ export function initializeLegacyStack() {
 
 export function getLegacyPublicPath() {
   return join(process.cwd(), 'public');
-}
-
-export function getLegacyRoutes() {
-  initializeLegacyStack();
-
-  return {
-    passport: require('passport'),
-    publicRouter: require('../../router/view/_public'),
-    authRouter: require('../../router/auth/_auth'),
-    adminRouter: require('../../router/auth/admin/_auth_admin'),
-    resetPasswordRouter: require('../../router/auth/password_reset'),
-  };
 }

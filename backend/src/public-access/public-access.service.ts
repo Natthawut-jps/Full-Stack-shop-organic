@@ -6,6 +6,7 @@ import * as nodemailer from 'nodemailer';
 import { Repository } from 'typeorm';
 import { ContactEntity } from './entities/contact.entity';
 import { UserEntity } from './entities/user.entity';
+import { AdminEntity } from './entities/admin.entity';
 
 @Injectable()
 export class PublicAccessService {
@@ -14,6 +15,8 @@ export class PublicAccessService {
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(ContactEntity)
     private readonly contactRepository: Repository<ContactEntity>,
+    @InjectRepository(AdminEntity)
+    private readonly adminRepository: Repository<AdminEntity>,
   ) {}
 
   async registerWithUsername(payload: any) {
@@ -32,6 +35,36 @@ export class PublicAccessService {
     );
 
     return 'successfully';
+  }
+
+
+  async loginWithUsername(payload: any) {
+    const user = await this.userRepository.findOne({ where: { email: payload.email } });
+    if (!user) throw new UnauthorizedException(' username and password Incorrect !New create Account');
+
+    const valid = await bcrypt.compare(payload.password, user.password);
+    if (!valid) throw new UnauthorizedException(' Incorrect password');
+
+    return this.issueUserTokens(user.email);
+  }
+
+  async loginAdmin(payload: any) {
+    const admin = await this.adminRepository.findOne({ where: { username: payload.username } });
+    if (!admin) throw new UnauthorizedException(' username and password Incorrect !New create Account');
+
+    const valid = await bcrypt.compare(payload.password, admin.password);
+    if (!valid) throw new UnauthorizedException(' Incorrect password');
+
+    return {
+      _uta: jwt.sign({ _uida: admin.username }, process.env.DOTENV_JWT_UT_ADMIN as string, {
+        algorithm: 'HS384',
+        expiresIn: '3m',
+      }),
+      _ura: jwt.sign({ _uida: admin.username }, process.env.DOTENV_JWT_UR_ADMIN as string, {
+        algorithm: 'HS384',
+        expiresIn: '5d',
+      }),
+    };
   }
 
   async registerWithGoogle(payload: any) {
