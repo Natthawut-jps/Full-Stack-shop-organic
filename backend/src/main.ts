@@ -1,16 +1,19 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
-import { ExpressAdapter } from '@nestjs/platform-express';
+import { json, urlencoded } from 'express';
 import { AppModule } from './app.module';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { createLegacyApp } = require('../app');
+import { getLegacyPublicPath, initializeLegacyStack } from './legacy/legacy.setup';
 
 async function bootstrap() {
-  const legacyExpressApp = createLegacyApp();
-  const app = await NestFactory.create(AppModule, new ExpressAdapter(legacyExpressApp));
+  initializeLegacyStack();
 
-  const port = Number(process.env.DOTENV_PORT || 3000);
+  const app = await NestFactory.create(AppModule);
+  app.enableCors();
+  app.use(json());
+  app.use(urlencoded({ extended: false }));
+  app.useStaticAssets(getLegacyPublicPath());
+
+  const port = Number(process.env.DOTENV_PORT || 3001);
   await app.listen(port);
   console.log(`NestJS server running on port ${port}`);
 }
