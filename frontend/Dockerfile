@@ -1,14 +1,17 @@
-FROM node as build
+FROM node:22 AS deps
 WORKDIR /app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+COPY package.json package-lock.json* ./
 RUN npm install
+
+FROM node:22 AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-FROM nginx:1.27.1
-WORKDIR /usr/share/nginx/html
-COPY --from=build /app/dist .
-COPY default.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-
+FROM node:22 AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=builder /app .
+EXPOSE 3000
+CMD ["npm", "run", "start"]

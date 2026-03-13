@@ -124,7 +124,7 @@ export const Review = () => {
                 >
                   <img
                     width={50}
-                    src={`${import.meta.env.VITE_BASE_API}/img/${item.imgURL}`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${item.imgURL}`}
                     alt=""
                   />
                   <Typography>{item.name}</Typography>
@@ -285,7 +285,7 @@ const Checkout_Bill: FunctionComponent = () => {
                             <img
                               className=" max-w-[80px] w-full  object-cover"
                               alt=""
-                              src={`${import.meta.env.VITE_BASE_API}/img/${
+                              src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${
                                 item.imgURL
                               }`}
                             />

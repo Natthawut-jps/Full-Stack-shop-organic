@@ -80,7 +80,7 @@ const Find_user: FunctionComponent = () => {
           <div className=" text-[12px]">นี้ใช่บัญชีของคุณหรือไม่</div>
           <div className=" flex flex-row shadow-sm drop-shadow-sm bg-gray-100/10 text-gray-500 w-fit pr-5 justify-start items-center gap-[10px]">
             <img
-              src={`${import.meta.env.VITE_BASE_API}/img/${user.imgURL}`}
+              src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${user.imgURL}`}
               alt=""
               className=" w-[50px] h-[50px]"
             />

@@ -140,7 +140,7 @@ const Checkout: FunctionComponent = () => {
                       className=" w-full max-w-[100px] object-cover"
                       alt=""
                       src={
-                        import.meta.env.VITE_BASE_API + `/img/${item.imgURL}`
+                        process.env.NEXT_PUBLIC_BASE_API + `/img/${item.imgURL}`
                       }
                     />
                     <div>{item.name}</div>

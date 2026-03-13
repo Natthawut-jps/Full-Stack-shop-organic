@@ -1,10 +1,10 @@
-# Shop-Organic
+# Shop-Organic Frontend (Next.js)
 
-## SetUp Project
+## Setup
 
-   ### 1. Download Source Code
-   ### 2. run "npm install"
-   ### 3. Set File ".env.local"
-   * VITE_BASE_API = 'http://localhost:8080'
-   * VITE_Client_ID = client-id of google at "https://console.cloud.google.com"
-   ### 4. run "npm run dev"
+1. Install dependencies: `npm install`
+2. Configure `.env.local`
+   - `NEXT_PUBLIC_BASE_API='http://localhost:8080'`
+   - `NEXT_PUBLIC_CLIENT_ID='your-google-client-id'`
+3. Start development server: `npm run dev`
+4. Production build: `npm run build && npm run start`

@@ -121,7 +121,7 @@ const ProductsDetailsDescription: FunctionComponent = () => {
                 <img
                   className="max-w-[400px] w-full object-cover"
                   alt=""
-                  src={`${import.meta.env.VITE_BASE_API}/img/${
+                  src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${
                     productDetail?.imgURL
                   }`}
                 />
@@ -414,7 +414,7 @@ const ProductsDetailsDescription: FunctionComponent = () => {
                       <img
                         className="sm:max-h-[150px] max-h-[100px] w-full object-cover"
                         alt=""
-                        src={`${import.meta.env.VITE_BASE_API}/img/${
+                        src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${
                           item.imgURL
                         }`}
                       />

@@ -127,7 +127,7 @@ const UserDashboard: FunctionComponent = () => {
               <img
                 className="max-w-[200px] w-full object-cover"
                 alt=""
-                src={`${import.meta.env.VITE_BASE_API}/img/${userInfo?.imgURL}`}
+                src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${userInfo?.imgURL}`}
               />
               <Link
                 to={"/Account/Settings"}

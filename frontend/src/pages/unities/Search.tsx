@@ -133,7 +133,7 @@ export const Search: FunctionComponent<open> = (props) => {
                   >
                     <div>
                       <img
-                        src={`${import.meta.env.VITE_BASE_API}/img/${
+                        src={`${process.env.NEXT_PUBLIC_BASE_API}/img/${
                           item.imgURL
                         }`}
                         alt=""
